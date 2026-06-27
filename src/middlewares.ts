@@ -206,15 +206,11 @@ export function validator<
   I extends Input = {
     in: HasUndefined<In> extends true
       ? {
-          [K in Target]?: In extends ValidationTargets[K]
-            ? In
-            : { [K2 in keyof In]?: ValidationTargets[K][K2] };
-        }
+        [K in Target]?: Out
+      }
       : {
-          [K in Target]: In extends ValidationTargets[K]
-            ? In
-            : { [K2 in keyof In]: ValidationTargets[K][K2] };
-        };
+        [K in Target]: Out
+      };
     out: { [K in Target]: Out };
   },
   V extends I = I,
